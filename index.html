@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS IT Services — Abbotsford IT Support </title>
+    <link rel="icon" type="image/png" href="images/download.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0d10;
+      --bg2:       #111318;
+      --bg3:       #181b21;
+      --border:    rgba(255,255,255,0.07);
+      --accent:    #00e5ff;
+      --accent2:   #0072ff;
+      --text:      #e8eaf0;
+      --muted:     #8890a4;
+      --card-bg:   #13161c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: rgba(11,13,16,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 100px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated grid background */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 70% 60% at 60% 50%, black 30%, transparent 100%);
+      animation: gridDrift 20s linear infinite;
+    }
+
+    @keyframes gridDrift {
+      0%   { background-position: 0 0; }
+      100% { background-position: 48px 48px; }
+    }
+
+    /* Glow orb */
+    .hero-glow {
+      position: absolute;
+      right: -10%;
+      top: 10%;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,114,255,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.08); opacity: 0.7; }
+    }
+
+    .hero-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      position: relative;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px; height: 1.5px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 700px;
+      position: relative;
+    }
+
+    .hero h1 .accent-word {
+      color: var(--accent);
+      position: relative;
+    }
+
+    .hero-sub {
+      max-width: 500px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin-top: 1.8rem;
+      position: relative;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; margin-top: 2.5rem;
+      flex-wrap: wrap; position: relative;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,229,255,0.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-trust {
+      display: flex; align-items: center; gap: 1.2rem;
+      margin-top: 3.5rem; position: relative;
+    }
+
+    .trust-dots {
+      display: flex;
+    }
+
+    .trust-dots span {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 2px solid var(--bg2);
+      margin-left: -8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .trust-dots span:first-child { margin-left: 0; }
+
+    .trust-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .trust-text strong { color: var(--text); }
+
+    /* ── SECTION LAYOUT ── */
+    section {
+      padding: 100px 5%;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1.5px;
+      background: var(--accent);
+    }
+
+    .section-heading {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      max-width: 520px;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg2); }
+
+    .services-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .services-intro p {
+      max-width: 360px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      padding: 2.2rem 2rem;
+      transition: background 0.3s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover { background: var(--bg3); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.4rem;
+      font-size: 1.4rem;
+    }
+
+    .service-card h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    .service-card .tag-list {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 1.2rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      background: rgba(0,229,255,0.07);
+      color: var(--accent);
+      border: 1px solid rgba(0,229,255,0.15);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,114,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #000;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .about-card .role {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-top: 0.2rem;
+      text-transform: uppercase;
+    }
+
+    .stat-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-weight: 300;
+      margin-top: 1.2rem;
+    }
+
+    .about-text p:first-of-type { margin-top: 1.8rem; }
+
+    .about-perks {
+      margin-top: 2rem;
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+
+    .perk {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.92rem; color: var(--muted);
+    }
+
+    .perk-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 800px) {
+      .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    .contact-info p {
+      color: var(--muted);
+      font-weight: 300;
+      margin-top: 1.2rem;
+    }
+
+    .contact-methods {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .contact-method {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-method:hover {
+      border-color: rgba(0,229,255,0.3);
+      background: rgba(0,229,255,0.04);
+    }
+
+    .contact-method-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-method-info .label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-method-info .value {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── FORM ── */
+    .contact-form {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    .form-group select {
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: var(--bg3);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(0,229,255,0.5);
+      box-shadow: 0 0 0 3px rgba(0,229,255,0.08);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      margin-top: 1.2rem;
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,229,255,0.3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 5%;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    footer p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE NAV ── */
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+      background: none; border: none;
+    }
+
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── SUCCESS STATE ── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .form-success .check {
+      font-size: 2.5rem; margin-bottom: 1rem;
+    }
+
+    .form-success h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p { color: var(--muted); font-size: 0.9rem; }
+
+    /* Scroll indicator */
+    .scroll-line {
+      position: absolute;
+      bottom: 40px; left: 5%;
+      display: flex; align-items: center; gap: 0.75rem;
+      color: var(--muted); font-size: 0.78rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .scroll-line::before {
+      content: '';
+      display: block;
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--muted));
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 1; }
+    }
+
+    /* Highlight badge */
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(0,229,255,0.25);
+      background: rgba(0,229,255,0.06);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="nav-logo">JS <span>IT</span> Services</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get Help →</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'; document.querySelector('.nav-links').style.flexDirection = 'column'; document.querySelector('.nav-links').style.position = 'absolute'; document.querySelector('.nav-links').style.top = '68px'; document.querySelector('.nav-links').style.left = '0'; document.querySelector('.nav-links').style.right = '0'; document.querySelector('.nav-links').style.background = 'rgba(11,13,16,0.98)'; document.querySelector('.nav-links').style.padding = '1.5rem 5%'; document.querySelector('.nav-links').style.borderBottom = '1px solid var(--border)';">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+
+  <div class="badge reveal">
+    <span class="badge-dot"></span>
+    Available for new clients in Abbotsford, BC
+  </div>
+
+  <h1 class="reveal">
+    Local IT<span class="accent-word"> support</span><br>
+    you can trust.
+  </h1>
+
+  <p class="hero-sub reveal">
+    JS IT Services provides hands-on computer repair, networking setup, and IT support for homes and small businesses in the Abbotsford area.
+  </p>
+
+  <div class="hero-actions reveal">
+  </div>
+
+  <div class="hero-trust reveal">
+    <div class="trust-dots">
+      <span>✓</span><span>★</span><span>JS</span>
+    </div>
+    <p class="trust-text">
+      <strong>Local, personal service</strong> — not a call centre
+    </p>
+  </div>
+
+  <div class="scroll-line">Scroll</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-intro reveal">
+    <div>
+      <div class="section-label">What I Do</div>
+      <h2 class="section-heading">Services built for real people</h2>
+    </div>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🖥️</div>
+      <h3>Computer Repair & Troubleshooting</h3>
+      <p>Slow PC? Virus? Blue screen of death? I diagnose and fix hardware and software issues so your machine runs like new again.</p>
+      <div class="tag-list">
+        <span class="tag">Virus Removal</span>
+        <span class="tag">Data Recovery</span>
+        <span class="tag">Hardware Repair</span>
+        <span class="tag">OS Reinstall</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">📡</div>
+      <h3>Networking & WiFi Setup</h3>
+      <p>Dead zones, slow speeds, and dropped connections — solved. I set up routers, extenders, and mesh networks that reach every corner.</p>
+      <div class="tag-list">
+        <span class="tag">Router Setup</span>
+        <span class="tag">Mesh Networks</span>
+        <span class="tag">Speed Optimization</span>
+        <span class="tag">Network Security</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🏢</div>
+      <h3>Small Business IT Support</h3>
+      <p>Keep your business running smoothly with on-call IT support, workstation setup, and proactive maintenance — no expensive IT contracts needed.</p>
+      <div class="tag-list">
+        <span class="tag">Workstation Setup</span>
+        <span class="tag">Cloud Backup</span>
+        <span class="tag">Printer Config</span>
+        <span class="tag">Ongoing Support</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">📦</div>
+      <h3>New Device Setup</h3>
+      <p>Got a new computer, tablet, or phone? I'll transfer your files, configure your accounts, install your apps, and make sure everything is secure and ready to go.</p>
+      <div class="tag-list">
+        <span class="tag">Data Transfer</span>
+        <span class="tag">Account Setup</span>
+        <span class="tag">App Install</span>
+        <span class="tag">Security Config</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-card">
+      <div class="about-avatar">JS</div>
+      <h3>Joey Spady</h3>
+      <div class="role">Founder &amp; Lead Technician</div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">5+</div>
+          <div class="stat-lbl">Years Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Fast</div>
+          <div class="stat-lbl">Response Time</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Local Service</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-text">
+    <div class="section-label reveal">About</div>
+    <h2 class="section-heading reveal">IT support from a real person, not a ticket queue</h2>
+
+    <p class="reveal">
+      JS IT Services is a locally-owned, one-person operation based in Abbotsford, BC. I started this business because I believe everyone deserves fast, honest, and affordable tech help — without the corporate runaround.
+    </p>
+
+    <p class="reveal">
+      I come to you — home visits, business calls, and remote support available. Whether you're a retiree who needs help with a new laptop, or a small business owner who needs their team's machines to just work, I've got you covered.
+    </p>
+
+    <div class="about-perks reveal">
+      <div class="perk"><span class="perk-dot"></span> On-site visits across Abbotsford and surronding areas</div>
+      <div class="perk"><span class="perk-dot"></span> No hourly surprises — upfront pricing</div>
+      <div class="perk"><span class="perk-dot"></span> Remote support available same day</div>
+      <div class="perk"><span class="perk-dot"></span> Plain-language explanations, always</div>
+    </div>
+
+    <div style="margin-top: 2rem;" class="reveal">
+      <a href="#contact" class="btn-primary">Get in Touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper">
+    <div class="contact-info reveal">
+      <div class="section-label">Contact</div>
+      <h2 class="section-heading">Let's fix it — fast.</h2>
+      <p>Fill out the form and I'll get back to you within a few hours. For urgent issues, call or text directly.</p>
+
+      <div class="contact-methods">
+        <a href="tel:+17783473640" class="contact-method">
+          <div class="contact-method-icon">📞</div>
+          <div class="contact-method-info">
+            <div class="label">Phone / Text</div>
+            <div class="value">(778) 347-3640</div>
+          </div>
+        </a>
+
+        <a href="mailto:jsitservicesabbotsford@gmail.com" class="contact-method">
+          <div class="contact-method-icon">✉️</div>
+          <div class="contact-method-info">
+            <div class="label">Email</div>
+            <div class="value">jsitservicesabbotsford@gmail.com</div>
+          </div>
+        </a>
+
+        <div class="contact-method" style="cursor: default;">
+          <div class="contact-method-icon">📍</div>
+          <div class="contact-method-info">
+            <div class="label">Service Area</div>
+            <div class="value">Abbotsford, BC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <div id="form-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Jane" />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Smith" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="jane@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" placeholder="(604) 555-0000" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="service">Service Needed</label>
+            <select id="service">
+              <option value="">— Select a service —</option>
+              <option>Computer Repair &amp; Troubleshooting</option>
+              <option>Networking &amp; WiFi Setup</option>
+              <option>Small Business IT Support</option>
+              <option>New Device Setup</option>
+              <option>Not sure — just need help</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="msg">Tell me what's going on</label>
+            <textarea id="msg" placeholder="Describe the issue or what you need set up..."></textarea>
+          </div>
+        </div>
+
+        <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <div class="check">✅</div>
+        <h3>Message sent!</h3>
+        <p>Thanks for reaching out. I'll get back to you within a few hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">JS <span>IT</span> Services</div>
+  <p>© 2026 JS IT Services — Abbotsford, BC</p>
+  <p>Reliable technical support for homes and small businesses in Abbotsford.</p>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Trigger hero reveals on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 150 + i * 120);
+    });
+  });
+
+  // Form submit
+  function handleSubmit() {
+    const email = document.getElementById('email').value;
+    const msg   = document.getElementById('msg').value;
+    if (!email || !msg) {
+      alert('Please fill in your email and describe the issue.');
+      return;
+    }
+    document.getElementById('form-body').style.display    = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+</script>
+</body>
+</html>
