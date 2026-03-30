@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Local IT support in Abbotsford, BC you can trust. JS IT Services provides hands-on computer repair, networking setup, and IT support for homes and small businesses." />
-  <title>JS IT Services — Abbotsford IT Support </title>
-    <link rel="icon" type="image/png" sizes="64x64" href="Images/favicon-64.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="Images/favicon-32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="Images/favicon-180.png">
+   <title>JS IT Services — Abbotsford IT Solutions </title>
+    <link rel="icon" type="image/png" sizes="64x64" href="Images/logo-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Images/logo-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Images/logo-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -15,15 +15,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0b0d10;
-      --bg2:       #111318;
-      --bg3:       #181b21;
+      --bg:        #09090f;
+      --bg2:       #0f1018;
+      --bg3:       #16182100;
       --border:    rgba(255,255,255,0.07);
-      --accent:    #00e5ff;
-      --accent2:   #0072ff;
+      --accent:    #1a6fff;   /* logo blue */
+      --accent-lt: #4d8fff;
+      --accent-glow: rgba(26,111,255,0.22);
       --text:      #e8eaf0;
-      --muted:     #8890a4;
-      --card-bg:   #13161c;
+      --muted:     #7a82a0;
+      --card-bg:   #10121a;
     }
 
     html { scroll-behavior: smooth; }
@@ -54,21 +55,33 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 5%;
       height: 68px;
-      background: rgba(11,13,16,0.85);
-      backdrop-filter: blur(16px);
+      background: rgba(9,9,15,0.88);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: -0.01em;
-      color: var(--text);
+      display: flex; align-items: center; gap: 0.7rem;
       text-decoration: none;
     }
 
-    .nav-logo span { color: var(--accent); }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      /* Invert white bg, keep the blue, slightly dim so it feels native */
+      filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(195deg) brightness(1.15);
+    }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .nav-logo-text span { color: var(--accent-lt); }
 
     .nav-links {
       display: flex; gap: 2rem; list-style: none;
@@ -86,15 +99,15 @@
     .nav-links a:hover { color: var(--text); }
 
     .nav-cta {
-      background: var(--accent);
-      color: #000 !important;
+      background: var(--accent) !important;
+      color: #fff !important;
       padding: 0.45rem 1.1rem;
       border-radius: 6px;
       font-weight: 600 !important;
-      transition: opacity 0.2s !important;
+      transition: opacity 0.2s, box-shadow 0.2s !important;
     }
 
-    .nav-cta:hover { opacity: 0.85; }
+    .nav-cta:hover { opacity: 0.88; box-shadow: 0 0 20px var(--accent-glow); }
 
     /* ── HERO ── */
     .hero {
@@ -105,38 +118,51 @@
       overflow: hidden;
     }
 
-    /* Animated grid background */
+    /* Animated grid */
     .hero::after {
       content: '';
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse 70% 60% at 60% 50%, black 30%, transparent 100%);
-      animation: gridDrift 20s linear infinite;
+        linear-gradient(rgba(26,111,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,111,255,0.05) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(ellipse 70% 60% at 65% 50%, black 20%, transparent 100%);
+      animation: gridDrift 24s linear infinite;
     }
 
     @keyframes gridDrift {
       0%   { background-position: 0 0; }
-      100% { background-position: 48px 48px; }
+      100% { background-position: 52px 52px; }
     }
 
     /* Glow orb */
     .hero-glow {
       position: absolute;
-      right: -10%;
-      top: 10%;
-      width: 600px; height: 600px;
+      right: -5%;
+      top: 5%;
+      width: 650px; height: 650px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,114,255,0.18) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(26,111,255,0.14) 0%, transparent 68%);
       pointer-events: none;
-      animation: pulse 8s ease-in-out infinite;
+      animation: pulse 9s ease-in-out infinite;
     }
 
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
-      50%       { transform: scale(1.08); opacity: 0.7; }
+      50%       { transform: scale(1.07); opacity: 0.65; }
+    }
+
+    /* ── HERO LOGO MARK ── */
+    .hero-logomark {
+      position: absolute;
+      right: 7%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(320px, 35vw);
+      opacity: 0.06;
+      pointer-events: none;
+      filter: brightness(0) invert(1);
+      z-index: 0;
     }
 
     .hero-label {
@@ -144,55 +170,58 @@
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-lt);
       margin-bottom: 1.2rem;
       position: relative;
       display: flex; align-items: center; gap: 0.6rem;
+      z-index: 1;
     }
 
     .hero-label::before {
       content: '';
       display: inline-block;
       width: 28px; height: 1.5px;
-      background: var(--accent);
+      background: var(--accent-lt);
     }
 
     .hero h1 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
       line-height: 1.08;
       letter-spacing: -0.03em;
-      max-width: 700px;
+      max-width: 680px;
       position: relative;
+      z-index: 1;
     }
 
     .hero h1 .accent-word {
-      color: var(--accent);
-      position: relative;
+      color: var(--accent-lt);
     }
 
     .hero-sub {
-      max-width: 500px;
+      max-width: 480px;
       color: var(--muted);
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       font-weight: 300;
       margin-top: 1.8rem;
       position: relative;
+      z-index: 1;
+      line-height: 1.75;
     }
 
     .hero-actions {
       display: flex; gap: 1rem; margin-top: 2.5rem;
-      flex-wrap: wrap; position: relative;
+      flex-wrap: wrap; position: relative; z-index: 1;
     }
 
     .btn-primary {
       background: var(--accent);
-      color: #000;
+      color: #fff;
       font-family: 'DM Sans', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
-      padding: 0.8rem 1.8rem;
+      padding: 0.85rem 1.9rem;
       border-radius: 8px;
       text-decoration: none;
       border: none; cursor: pointer;
@@ -202,7 +231,7 @@
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,229,255,0.3);
+      box-shadow: 0 10px 36px var(--accent-glow);
     }
 
     .btn-ghost {
@@ -211,7 +240,7 @@
       font-family: 'DM Sans', sans-serif;
       font-weight: 500;
       font-size: 0.95rem;
-      padding: 0.8rem 1.8rem;
+      padding: 0.85rem 1.9rem;
       border-radius: 8px;
       text-decoration: none;
       border: 1px solid var(--border);
@@ -220,13 +249,13 @@
     }
 
     .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.22);
       background: rgba(255,255,255,0.04);
     }
 
     .hero-trust {
       display: flex; align-items: center; gap: 1.2rem;
-      margin-top: 3.5rem; position: relative;
+      margin-top: 3.5rem; position: relative; z-index: 1;
     }
 
     .trust-dots {
@@ -236,35 +265,29 @@
     .trust-dots span {
       width: 32px; height: 32px;
       border-radius: 50%;
-      background: var(--bg3);
-      border: 2px solid var(--bg2);
+      background: var(--card-bg);
+      border: 2px solid rgba(26,111,255,0.3);
       margin-left: -8px;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.75rem;
-      color: var(--accent);
+      color: var(--accent-lt);
       font-weight: 700;
     }
 
     .trust-dots span:first-child { margin-left: 0; }
 
-    .trust-text {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
+    .trust-text { font-size: 0.82rem; color: var(--muted); }
     .trust-text strong { color: var(--text); }
 
     /* ── SECTION LAYOUT ── */
-    section {
-      padding: 100px 5%;
-    }
+    section { padding: 100px 5%; }
 
     .section-label {
       font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-lt);
       margin-bottom: 1rem;
       display: flex; align-items: center; gap: 0.6rem;
     }
@@ -273,7 +296,7 @@
       content: '';
       display: inline-block;
       width: 20px; height: 1.5px;
-      background: var(--accent);
+      background: var(--accent-lt);
     }
 
     .section-heading {
@@ -306,7 +329,7 @@
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5px;
+      gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -327,20 +350,20 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      background: linear-gradient(90deg, var(--accent), var(--accent-lt));
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.4s ease;
     }
 
-    .service-card:hover { background: var(--bg3); }
+    .service-card:hover { background: #141720; }
     .service-card:hover::before { transform: scaleX(1); }
 
     .service-icon {
       width: 48px; height: 48px;
       border-radius: 12px;
-      background: rgba(0,229,255,0.08);
-      border: 1px solid rgba(0,229,255,0.15);
+      background: rgba(26,111,255,0.1);
+      border: 1px solid rgba(26,111,255,0.2);
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 1.4rem;
       font-size: 1.4rem;
@@ -372,9 +395,9 @@
       letter-spacing: 0.04em;
       padding: 0.25rem 0.65rem;
       border-radius: 20px;
-      background: rgba(0,229,255,0.07);
-      color: var(--accent);
-      border: 1px solid rgba(0,229,255,0.15);
+      background: rgba(26,111,255,0.08);
+      color: var(--accent-lt);
+      border: 1px solid rgba(26,111,255,0.18);
     }
 
     /* ── ABOUT ── */
@@ -389,9 +412,7 @@
       #about { grid-template-columns: 1fr; gap: 3rem; }
     }
 
-    .about-visual {
-      position: relative;
-    }
+    .about-visual { position: relative; }
 
     .about-card {
       background: var(--bg2);
@@ -408,20 +429,24 @@
       bottom: -60px; right: -60px;
       width: 200px; height: 200px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,114,255,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(26,111,255,0.14) 0%, transparent 70%);
       pointer-events: none;
     }
 
+    /* Logo in about card instead of text avatar */
     .about-avatar {
       width: 72px; height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-radius: 16px;
+      background: var(--accent);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: #000;
       margin-bottom: 1.2rem;
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .about-avatar img {
+      width: 100%; height: 100%; object-fit: contain;
+      filter: brightness(0) invert(1);
     }
 
     .about-card h3 {
@@ -431,7 +456,7 @@
     }
 
     .about-card .role {
-      color: var(--accent);
+      color: var(--accent-lt);
       font-size: 0.82rem;
       font-weight: 500;
       letter-spacing: 0.05em;
@@ -453,7 +478,7 @@
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: 1.8rem;
-      color: var(--accent);
+      color: var(--accent-lt);
       line-height: 1;
     }
 
@@ -524,15 +549,15 @@
     }
 
     .contact-method:hover {
-      border-color: rgba(0,229,255,0.3);
-      background: rgba(0,229,255,0.04);
+      border-color: rgba(26,111,255,0.35);
+      background: rgba(26,111,255,0.04);
     }
 
     .contact-method-icon {
       width: 40px; height: 40px;
       border-radius: 10px;
-      background: rgba(0,229,255,0.08);
-      border: 1px solid rgba(0,229,255,0.12);
+      background: rgba(26,111,255,0.1);
+      border: 1px solid rgba(26,111,255,0.18);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.1rem;
       flex-shrink: 0;
@@ -583,7 +608,7 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
-      background: var(--bg3);
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 0.75rem 1rem;
@@ -591,25 +616,20 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 0.95rem;
       font-weight: 400;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
       width: 100%;
       -webkit-appearance: none;
     }
 
-    .form-group select {
-      cursor: pointer;
-    }
-
-    .form-group select option {
-      background: var(--bg3);
-    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--bg); }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: rgba(0,229,255,0.5);
-      box-shadow: 0 0 0 3px rgba(0,229,255,0.08);
+      border-color: rgba(26,111,255,0.55);
+      box-shadow: 0 0 0 3px rgba(26,111,255,0.1);
     }
 
     .form-group textarea { resize: vertical; min-height: 120px; }
@@ -618,7 +638,7 @@
       margin-top: 1.2rem;
       width: 100%;
       background: var(--accent);
-      color: #000;
+      color: #fff;
       font-family: 'DM Sans', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
@@ -632,7 +652,7 @@
 
     .form-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,229,255,0.3);
+      box-shadow: 0 10px 36px var(--accent-glow);
     }
 
     /* ── FOOTER ── */
@@ -643,6 +663,16 @@
       flex-wrap: wrap; gap: 1rem;
     }
 
+    .footer-brand {
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    .footer-brand img {
+      height: 28px; width: auto;
+      filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(195deg) brightness(1.1);
+      opacity: 0.8;
+    }
+
     .footer-logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -650,12 +680,9 @@
       color: var(--text);
     }
 
-    .footer-logo span { color: var(--accent); }
+    .footer-logo span { color: var(--accent-lt); }
 
-    footer p {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
+    footer p { font-size: 0.82rem; color: var(--muted); }
 
     /* ── REVEAL ANIMATION ── */
     .reveal {
@@ -695,9 +722,7 @@
       padding: 3rem 2rem;
     }
 
-    .form-success .check {
-      font-size: 2.5rem; margin-bottom: 1rem;
-    }
+    .form-success .check { font-size: 2.5rem; margin-bottom: 1rem; }
 
     .form-success h3 {
       font-family: 'DM Sans', sans-serif;
@@ -715,6 +740,7 @@
       display: flex; align-items: center; gap: 0.75rem;
       color: var(--muted); font-size: 0.78rem;
       letter-spacing: 0.1em; text-transform: uppercase;
+      z-index: 1;
     }
 
     .scroll-line::before {
@@ -735,12 +761,13 @@
       display: inline-flex; align-items: center; gap: 0.4rem;
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
-      border: 1px solid rgba(0,229,255,0.25);
-      background: rgba(0,229,255,0.06);
+      border: 1px solid rgba(26,111,255,0.28);
+      background: rgba(26,111,255,0.07);
       font-size: 0.78rem;
       font-weight: 500;
-      color: var(--accent);
+      color: var(--accent-lt);
       margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
     }
 
     .badge-dot {
@@ -760,14 +787,29 @@
 
 <!-- NAVIGATION -->
 <nav>
-  <a href="#" class="nav-logo">JS <span>IT</span> Services</a>
+  <a href="#" class="nav-logo">
+    <img src="Images/logo.png" alt="JS IT Services logo" />
+    <span class="nav-logo-text">JS <span>IT</span> Services</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#contact" class="nav-cta">Get Help →</a></li>
   </ul>
-  <button class="hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'; document.querySelector('.nav-links').style.flexDirection = 'column'; document.querySelector('.nav-links').style.position = 'absolute'; document.querySelector('.nav-links').style.top = '68px'; document.querySelector('.nav-links').style.left = '0'; document.querySelector('.nav-links').style.right = '0'; document.querySelector('.nav-links').style.background = 'rgba(11,13,16,0.98)'; document.querySelector('.nav-links').style.padding = '1.5rem 5%'; document.querySelector('.nav-links').style.borderBottom = '1px solid var(--border)';">
+  <button class="hamburger" onclick="
+    const nl = document.querySelector('.nav-links');
+    const open = nl.style.display === 'flex';
+    nl.style.display = open ? 'none' : 'flex';
+    nl.style.flexDirection = 'column';
+    nl.style.position = 'absolute';
+    nl.style.top = '68px';
+    nl.style.left = '0';
+    nl.style.right = '0';
+    nl.style.background = 'rgba(9,9,15,0.98)';
+    nl.style.padding = '1.5rem 5%';
+    nl.style.borderBottom = '1px solid var(--border)';
+  ">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -775,11 +817,15 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-glow"></div>
+  <!-- Watermark logo mark in background -->
+  <img class="hero-logomark" src="Images/logo.png" alt="" aria-hidden="true" />
 
   <div class="badge reveal">
     <span class="badge-dot"></span>
     Available for new clients in Abbotsford, BC
   </div>
+
+  <div class="hero-label reveal">Abbotsford's Local IT Expert</div>
 
   <h1 class="reveal">
     Local IT<span class="accent-word"> support</span><br>
@@ -791,6 +837,8 @@
   </p>
 
   <div class="hero-actions reveal">
+    <a href="#contact" class="btn-primary">Get Help Now →</a>
+    <a href="#services" class="btn-ghost">View Services</a>
   </div>
 
   <div class="hero-trust reveal">
@@ -812,12 +860,13 @@
       <div class="section-label">What I Do</div>
       <h2 class="section-heading">Services built for real people</h2>
     </div>
+    <p>No jargon, no runaround. Just clear, honest tech help when you need it most.</p>
   </div>
 
   <div class="services-grid">
     <div class="service-card reveal">
       <div class="service-icon">🖥️</div>
-      <h3>Computer Repair & Troubleshooting</h3>
+      <h3>Computer Repair &amp; Troubleshooting</h3>
       <p>Slow PC? Virus? Blue screen of death? I diagnose and fix hardware and software issues so your machine runs like new again.</p>
       <div class="tag-list">
         <span class="tag">Virus Removal</span>
@@ -829,7 +878,7 @@
 
     <div class="service-card reveal">
       <div class="service-icon">📡</div>
-      <h3>Networking & WiFi Setup</h3>
+      <h3>Networking &amp; WiFi Setup</h3>
       <p>Dead zones, slow speeds, and dropped connections — solved. I set up routers, extenders, and mesh networks that reach every corner.</p>
       <div class="tag-list">
         <span class="tag">Router Setup</span>
@@ -869,7 +918,9 @@
 <section id="about">
   <div class="about-visual reveal">
     <div class="about-card">
-      <div class="about-avatar">JS</div>
+      <div class="about-avatar">
+        <img src="Images/logo.png" alt="JS IT Services" />
+      </div>
       <h3>Joey Spady</h3>
       <div class="role">Founder &amp; Lead Technician</div>
 
@@ -892,7 +943,7 @@
 
   <div class="about-text">
     <div class="section-label reveal">About</div>
-    <h2 class="section-heading reveal">IT support from a real person, not a ticket queue</h2>
+    <h2 class="section-heading reveal">IT solutions you can count on — from someone who actually picks up.</h2>
 
     <p class="reveal">
       JS IT Services is a locally-owned, one-person operation based in Abbotsford, BC. I started this business because I believe everyone deserves fast, honest, and affordable tech help — without the corporate runaround.
@@ -903,10 +954,10 @@
     </p>
 
     <div class="about-perks reveal">
-      <div class="perk"><span class="perk-dot"></span> On-site visits across Abbotsford and surronding areas</div>
-      <div class="perk"><span class="perk-dot"></span> No hourly surprises — upfront pricing</div>
-      <div class="perk"><span class="perk-dot"></span> Remote support available same day</div>
-      <div class="perk"><span class="perk-dot"></span> Plain-language explanations, always</div>
+      <div class="perk"><span class="perk-dot"></span>On-site visits across Abbotsford and surrounding areas</div>
+      <div class="perk"><span class="perk-dot"></span>No hourly surprises — upfront pricing</div>
+      <div class="perk"><span class="perk-dot"></span>Remote support available same day</div>
+      <div class="perk"><span class="perk-dot"></span>Plain-language explanations, always</div>
     </div>
 
     <div style="margin-top: 2rem;" class="reveal">
@@ -944,7 +995,7 @@
           <div class="contact-method-icon">📍</div>
           <div class="contact-method-info">
             <div class="label">Service Area</div>
-            <div class="value">Abbotsford, BC</div>
+            <div class="value">Abbotsford, BC &amp; surrounding areas</div>
           </div>
         </div>
       </div>
@@ -1015,9 +1066,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">JS <span>IT</span> Services</div>
+  <div class="footer-brand">
+    <img src="Images/logo.png" alt="JS IT Services" />
+    <div class="footer-logo">JS <span>IT</span> Services</div>
+  </div>
   <p>© 2026 JS IT Services — Abbotsford, BC</p>
-  <p>Reliable technical support for homes and small businesses in Abbotsford.</p>
+  <p>Reliable IT solutions for homes and small businesses.</p>
 </footer>
 
 <script>
@@ -1040,7 +1094,7 @@
     });
   });
 
-  // Intercept Formspree submission to show success state in-page
+  // Intercept Formspree submission
   const form = document.getElementById('contact-form');
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
